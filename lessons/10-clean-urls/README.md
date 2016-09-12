@@ -11,18 +11,10 @@ to do routing, but there's a catch (we'll get to it later).
 
 Open up `index.js` and import `browserHistory` instead of `hashHistory`.
 
-```js
-// index.js
-// ...
-// bring in `browserHistory` instead of `hashHistory`
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+### Challenge
+- Open up `index.js` and import `browserHistory` instead of `hashHistory`
+- Update your Router component to use `browserHistory`
 
-render((
-  <Router history={browserHistory}>
-    {/* ... */}
-  </Router>
-), document.getElementById('app'))
-```
 
 Now go click around and admire your clean URLs.
 

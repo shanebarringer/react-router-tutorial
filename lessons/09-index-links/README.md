@@ -25,7 +25,7 @@ index route is rendered.
 
 First let's use the `IndexLink` instead of `NavLink`
 
-```js
+```javascript
 // App.js
 import { IndexLink } from 'react-router'
 
@@ -41,7 +41,7 @@ ahead and click around to see.
 We can use `Link` as well by passing it the `onlyActiveOnIndex` prop
 (`IndexLink` just wraps `Link` with this property for convenience).
 
-```js
+```javascript
 <li><Link to="/" activeClassName="active" onlyActiveOnIndex={true}>Home</Link></li>
 ```
 
@@ -52,9 +52,8 @@ Remember, in `NavLink` we're passing along all of our props to `Link` with
 the `{...spread}` syntax, so we can actually add the prop when we render
 a `NavLink` and it will make its way down to the `Link`:
 
-```js
-<li><NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink></li>
-```
+## Challenge
+- *Update your list item to render the NavLink component*
 
 ---
 

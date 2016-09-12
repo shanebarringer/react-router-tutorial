@@ -6,12 +6,15 @@ clicks, etc.
 
 Let's make a little form in `Repos` that programmatically navigates.
 
-```js
+### Challenge
+- Add the following `handleSubmit` method to your `Repos` Component:
+
+```javascript
 // modules/Repos.js
 import React from 'react'
 import NavLink from './NavLink'
 
-export default React.createClass({
+export default class Repos extends React.Component {
 
   // add this method
   handleSubmit(event) {
@@ -20,30 +23,22 @@ export default React.createClass({
     const repo = event.target.elements[1].value
     const path = `/repos/${userName}/${repo}`
     console.log(path)
-  },
-
-  render() {
-    return (
-      <div>
-        <h2>Repos</h2>
-        <ul>
-          <li><NavLink to="/repos/reactjs/react-router">React Router</NavLink></li>
-          <li><NavLink to="/repos/facebook/react">React</NavLink></li>
-          {/* add this form */}
-          <li>
-            <form onSubmit={this.handleSubmit}>
-              <input type="text" placeholder="userName"/> / {' '}
-              <input type="text" placeholder="repo"/>{' '}
-              <button type="submit">Go</button>
-            </form>
-          </li>
-        </ul>
-        {this.props.children}
-      </div>
-    )
   }
-})
+
+  //...
+
+}
 ```
+
+- Create a form component in your render method
+  - Nest the form inside of a list item component (in your `<ul>`)
+  - in your form component, pass the `handleSubmit` function to an `onSubmit` attribute
+  - Create the following components (inside your form):
+    - `<input type="text" placeholder="userName"/> / {' '}`
+    - `<input type="text" placeholder="repo"/>{' '}`
+  - Add a button component and close out your form
+
+
 
 There are two ways you can do this, the first is simpler than the
 second.
@@ -51,7 +46,7 @@ second.
 First we can use the `browserHistory` singleton that we passed into
 `Router` in `index.js` and push a new URL into the history.
 
-```js
+```javascript
 // modules/Repos.js
 import { browserHistory } from 'react-router'
 
@@ -60,7 +55,7 @@ import { browserHistory } from 'react-router'
     // ...
     const path = `/repos/${userName}/${repo}`
     browserHistory.push(path)
-  },
+  }
 // ...
 ```
 
@@ -71,15 +66,31 @@ acceptable practice. If you're concerned about it, you can make a module
 that exports the history you want to use across the app, or...
 
 You can also use the `router` that `Router` provides on "context".
-First, you ask for context in the component, and then you can use it:
 
-```js
-export default React.createClass({
+First, you assign `contextTypes` to your component
 
-  // ask for `router` from context
-  contextTypes: {
+```javascript
+export default class Repos extends React.Component {
+  // ...
+
+}
+
+Repos.contextTypes = {
     router: React.PropTypes.object
-  },
+}
+```
+
+Second, in your constructor function
+
+- pass context as the second argument
+- access the router option (belonging to context): `context.router`
+
+```javascript
+export default class Repos extends React.Component {
+  constructor(props, context){
+    super(props)
+    context.router
+  }
 
   // ...
 
@@ -89,7 +100,11 @@ export default React.createClass({
   },
 
   // ..
-})
+}
+
+Repos.contextTypes = {
+    router: React.PropTypes.object
+}
 ```
 
 This way you'll be sure to be pushing to whatever history gets passed to

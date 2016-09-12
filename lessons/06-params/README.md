@@ -21,27 +21,13 @@ parsed out and made available to route components on
 
 Lets teach our app how to render screens at `/repos/:userName/:repoName`.
 
-First we need a component to render at the route, make a new file at
-`modules/Repo.js` that looks something like this:
+First we need a component to render at the route,
+- make a new file at:`modules/Repo.js`
+- render an h2 compoment and pass in `{this.props.params.repoName}`
 
-```js
-// modules/Repo.js
-import React from 'react'
+- Now open up `index.js` and add the new Repo route.
 
-export default React.createClass({
-  render() {
-    return (
-      <div>
-        <h2>{this.props.params.repoName}</h2>
-      </div>
-    )
-  }
-})
-```
-
-Now open up `index.js` and add the new route.
-
-```js
+```javascript
 // ...
 // import Repo
 import Repo from './modules/Repo'
@@ -50,8 +36,7 @@ render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <Route path="/repos" component={Repos}/>
-      {/* add the new route */}
-      <Route path="/repos/:userName/:repoName" component={Repo}/>
+      {/* add the new route here */}
       <Route path="/about" component={About}/>
     </Route>
   </Router>
@@ -60,17 +45,18 @@ render((
 
 Now we can add some links to this new route in `Repos.js`.
 
-```js
+```javascript
 // Repos.js
 import { Link } from 'react-router'
 // ...
-export default React.createClass({
+export default class Repos extends React.Component {
   render() {
     return (
       <div>
         <h2>Repos</h2>
 
-        {/* add some links */}
+        {/* adding some links */}
+
         <ul>
           <li><Link to="/repos/reactjs/react-router">React Router</Link></li>
           <li><Link to="/repos/facebook/react">React</Link></li>
@@ -79,7 +65,7 @@ export default React.createClass({
       </div>
     )
   }
-})
+}
 ```
 
 Now go test your links out. Note that the parameter name in the route

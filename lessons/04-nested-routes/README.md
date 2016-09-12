@@ -50,7 +50,7 @@ Let's nest our `About` and `Repos` components inside of `App` so that we
 can share the navigation with all screens in the app. We do it in two
 steps:
 
-First, let the `App` `Route` have children, and move the other routes
+First: let the `App` `Route` have children, and move the other routes
 underneath it.
 
 ```js
@@ -68,6 +68,8 @@ render((
 ```
 
 Next, render children inside of `App`.
+after your unordered list
+ - list the children (hint: children are now props)
 
 ```js
 // modules/App.js
@@ -81,8 +83,7 @@ Next, render children inside of `App`.
           <li><Link to="/repos">Repos</Link></li>
         </ul>
 
-        {/* add this */}
-        {this.props.children}
+        {/* your answer here */}
 
       </div>
     )

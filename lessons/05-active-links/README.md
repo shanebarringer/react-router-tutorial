@@ -58,29 +58,22 @@ us to benefit from.
 
 Create a new file at `modules/NavLink.js` that looks like this:
 
-```js
+```javascript
 // modules/NavLink.js
 import React from 'react'
 import { Link } from 'react-router'
 
-export default React.createClass({
+export default class NavLink extends React.Component {
   render() {
     return <Link {...this.props} activeClassName="active"/>
   }
-})
+}
 ```
 
 Now you can go change your links to `NavLink`s.
 
-```js
-// modules/App.js
-import NavLink from './NavLink'
-
-// ...
-
-<li><NavLink to="/about">About</NavLink></li>
-<li><NavLink to="/repos">Repos</NavLink></li>
-```
+- import NavLink to your App.js file
+- Update your list items to load the NavLink components
 
 Oh, how beautiful upon the renders is the composability of components.
 

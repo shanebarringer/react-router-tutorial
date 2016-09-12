@@ -34,7 +34,7 @@ When you run `npm start` it checks if the value of our `NODE_ENV` environment va
 Now we're ready to create a production server with Express and add a new file at root dir. Here's a
 first attempt:
 
-```js
+```javascript
 // server.js
 var express = require('express')
 var path = require('path')
@@ -69,13 +69,15 @@ clicking around, try navigating to [http://localhost:8080/package.json](http://l
 Whoops.  Let's fix that. We're going to shuffle around a couple files and
 update some paths scattered across the app.
 
-1. make a `public` directory.
-2. Move `index.html` and `index.css` into it.
+### Challenge
+- make a `public` directory.
+- Move `index.html` and `index.css` into it.
+
 
 Now let's update `server.js` to point to the right directory for static
 assets:
 
-```js
+```javascript
 // server.js
 // ...
 // add path.join here
@@ -90,7 +92,7 @@ app.get('*', function (req, res) {
 
 We also need to tell webpack to build to this new directory:
 
-```js
+```javascript
 // webpack.config.js
 // ...
 output: {
@@ -114,7 +116,7 @@ Okay, now that we aren't serving up the root of our project as public
 files, let's add some code minification to Webpack and gzipping to
 express.
 
-```js
+```javascript
 // webpack.config.js
 
 // make sure to import this
@@ -137,7 +139,7 @@ module.exports = {
 
 And compression in express:
 
-```js
+```javascript
 // server.js
 // ...
 var compression = require('compression')
