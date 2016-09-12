@@ -41,29 +41,15 @@ Create two new components at:
 - `modules/About.js`
 - `modules/Repos.js`
 
-```js
-// modules/About.js
-import React from 'react'
-
-export default React.createClass({
-  render() {
-    return <div>About</div>
-  }
-})
-```
-
-```js
-// modules/Repos.js
-import React from 'react'
-
-export default React.createClass({
-  render() {
-    return <div>Repos</div>
-  }
-})
-```
+- Inside the About component
+  - return a div that has the content/text About
+- Inside the Repos component
+  - return a div that has the content/text Repos
 
 Now we can couple them to the app at their respective paths.
+
+- import the modules into your index.js
+- then add the following to your Router:
 
 ```js
 // insert into index.js

@@ -3,7 +3,7 @@
 Alright, first things first. Server rendering, at its core is a simple
 concept in React.
 
-```js
+```javascript
 render(<App/>, domNode)
 // can be rendered on the server as
 const markup = renderToString(<App/>)
@@ -21,7 +21,7 @@ we use it to build a client bundle.
 Make a new file called `webpack.server.config.js` and put this stuff in
 there:
 
-```js
+```javascript
 var fs = require('fs')
 var path = require('path')
 
@@ -65,7 +65,7 @@ Now we need to make some scripts to build server bundle before we try to
 run our app.  Update your `package.json` script config to look like
 this:
 
-```
+```json
 "scripts": {
   "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
   "start:dev": "webpack-dev-server --inline --content-base public/ --history-api-fallback",
@@ -84,7 +84,7 @@ out into a module so that both the client and server entries can require
 it. Make a file at `modules/routes` and move your routes and components
 into it.
 
-```js
+```javascript
 // modules/routes.js
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
@@ -105,7 +105,7 @@ module.exports = (
 )
 ```
 
-```js
+```javascript
 // index.js
 import React from 'react'
 import { render } from 'react-dom'
@@ -135,7 +135,7 @@ in this app, but you'll see where it could happen.
 First we import `match` and `RouterContext` from react router, then
 we'll match the routes to the url, and finally render.
 
-```js
+```javascript
 // ...
 // import some new stuff
 import React from 'react'

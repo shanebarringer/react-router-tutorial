@@ -4,21 +4,14 @@ When we visit `/` in this app it's just our navigation and a blank page.
 We'd like to render a `Home` component there. Lets create a `Home`
 component and then talk about how to render it at `/`.
 
-```js
-// modules/Home.js
-import React from 'react'
+- Create a Home component in modules
+- render a div with the content "Home"
 
-export default React.createClass({
-  render() {
-    return <div>Home</div>
-  }
-})
-```
 
 One option is to see if we have any children in `App`, and if not,
 render `Home`:
 
-```js
+```javascript
 // modules/App.js
 import Home from './Home'
 
@@ -44,22 +37,18 @@ build small apps inside small apps, not big ones!
 
 Let's add a new route to `index.js`.
 
-```js
-// index.js
-// new imports:
-// add `IndexRoute` to 'react-router' imports
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
-// and the Home component
-import Home from './modules/Home'
+- import Home into index.js
+- Nest and IndexRoute under your App Route
 
+
+```javascript
 // ...
 
 render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
 
-      {/* add it here, as a child of `/` */}
-      <IndexRoute component={Home}/>
+      {/* add your index route here, (as a child of `/`) */}
 
       <Route path="/repos" component={Repos}>
         <Route path="/repos/:userName/:repoName" component={Repo}/>

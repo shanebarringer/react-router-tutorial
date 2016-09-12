@@ -6,25 +6,14 @@ the `Router` it was rendered in.
 
 Let's create some navigation in our `App` component.
 
-```js
-// modules/App.js
-import React from 'react'
-import { Link } from 'react-router'
+1. Import Link from React Router in your App.js
+2. Return a component with:
+  3. an h1 that says 'React Router Tutorial'
+  4. an unordered list with a role of 'nav'
+  5. 2 list items
+    6. next Link components inside the list items
+    7. one for About and One for Repos
 
-export default React.createClass({
-  render() {
-    return (
-      <div>
-        <h1>React Router Tutorial</h1>
-        <ul role="nav">
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/repos">Repos</Link></li>
-        </ul>
-      </div>
-    )
-  }
-})
-```
 
 Now visit [http://localhost:8080](http://localhost:8080) and click the links, click back, click
 forward. It works!
